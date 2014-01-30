@@ -1,0 +1,172 @@
+
+
+
+1/30/2014
+
+Starting "C:\Program Files\Autodesk\Maya2014\bin\mayabatch.exe"
+mental ray for Maya 2014 
+mental ray: version 3.11.1.13, Sep 12 2013, revision 204885
+File read in 0 seconds.
+Result: C:/Users/10634060/Documents/maya/projects/default/scenes/Shot1__7752.mb
+Total Elapsed Time Since Start Of Maya (hh:mm:ss): 00:00:05
+====================================
+Resource Usage At Start Of Rendering
+====================================
+   67424	Page faults
+ 259.215 Mb	Max resident size
+ 258.520 Mb	Peak total size(Estimated)
+  29.734 Mb	Peak arena size
+====================================
+ 259.215 Mb	Current
+   0.328 Mb	Data Blocks
+  29.219 Mb	MEL
+   0.063 Mb	Arrays
+   0.124 Mb	Transforms
+   0.002 Mb	arguments
+====================================
+WARNING: local IMF plug-in `C:/Program Files/Autodesk/mentalrayForMaya2014/bin/image/IMFmentalrayCT.dll' overrides `C:/Program Files/Autodesk/mentalrayForMaya2014/bin/image/IMFmentalrayCT.dll
+WARNING: local IMF plug-in `C:/Program Files/Autodesk/mentalrayForMaya2014/bin/image/IMFmentalrayMAP.dll' overrides `C:/Program Files/Autodesk/mentalrayForMaya2014/bin/image/IMFmentalrayMAP.dll
+WARNING: local IMF plug-in `C:/Program Files/Autodesk/mentalrayForMaya2014/bin/image/IMFmentalrayST.dll' overrides `C:/Program Files/Autodesk/mentalrayForMaya2014/bin/image/IMFmentalrayST.dll
+Rendering using 12 threads.
+A default light has been created, modify defaultRenderGlobals.enableDefaultLight to change this behavior.
+Automatic near/far clipping values: 1.52035, 100.895.
+Starting Rendering C:/Users/10634060/Documents/maya/projects/default/images/Shot1.iff.
+Error: line 0: Unable to load the image file, 'C:/Users/Alyssa/Documents/GitHub/3DEssentials//sourceimages/CroppedBackground.png', for CameraShot1:imagePlaneShape1
+Constructing shading groups
+
+Rendering current frame.
+
+Frame triangle count: 1620
+====================================
+Resource Usage At End Of Frame
+====================================
+   22138	Page faults
+ 305.809 Mb	Max resident size
+ 300.613 Mb	Peak total size(Estimated)
+  67.390 Mb	Peak arena size
+====================================
+ 293.891 Mb	Current
+   0.328 Mb	Data Blocks
+  29.219 Mb	MEL
+  13.156 Mb	Pixel Map
+   0.124 Mb	Transforms
+   0.014 Mb	Render Geometry Arena
+  10.500 Mb	Render Cache
+   0.002 Mb	arguments
+   0.063 Mb	Arrays
+====================================
+Postprocessing rendering result.
+Time For Tessellation (hh:mm:ss): 00:00:00
+Time For Shadow Map   (hh:mm:ss): 00:00:00
+Time For Post Process (hh:mm:ss): 00:00:00
+Time For Frame Render (hh:mm:ss): 00:00:00
+Finished Rendering C:/Users/10634060/Documents/maya/projects/default/images/Shot1.iff.
+
+------------------------------------------------------------
+
+
+====================================
+Resource Usage At End Of Rendering
+====================================
+     280	Page faults
+ 300.613 Mb	Peak total size(Estimated)
+  53.390 Mb	Peak arena size
+====================================
+ 286.348 Mb	Current
+   0.328 Mb	Data Blocks
+  29.219 Mb	MEL
+   0.124 Mb	Transforms
+   7.000 Mb	Render Cache
+   0.002 Mb	arguments
+   0.063 Mb	Arrays
+  10.812 Mb	Pixel Map
+====================================
+Total Time For Render (hh:mm:ss): 00:00:00
+Total Elapsed Time For Maya (hh:mm:ss): 00:00:06
+Scene C:/Users/10634060/Documents/maya/projects/default/scenes/Shot1__7752.mb completed.
+
+
+
+1/30/2014
+
+Starting "C:\Program Files\Autodesk\Maya2014\bin\mayabatch.exe"
+mental ray for Maya 2014 
+mental ray: version 3.11.1.13, Sep 12 2013, revision 204885
+File read in 0 seconds.
+Result: C:/Users/10634060/Documents/maya/projects/default/scenes/Shot1.2__7752.mb
+Total Elapsed Time Since Start Of Maya (hh:mm:ss): 00:00:05
+====================================
+Resource Usage At Start Of Rendering
+====================================
+   67137	Page faults
+ 259.016 Mb	Max resident size
+ 258.656 Mb	Peak total size(Estimated)
+  29.734 Mb	Peak arena size
+====================================
+ 259.016 Mb	Current
+  29.219 Mb	MEL
+   0.002 Mb	arguments
+   0.328 Mb	Data Blocks
+   0.124 Mb	Transforms
+   0.063 Mb	Arrays
+====================================
+WARNING: local IMF plug-in `C:/Program Files/Autodesk/mentalrayForMaya2014/bin/image/IMFmentalrayCT.dll' overrides `C:/Program Files/Autodesk/mentalrayForMaya2014/bin/image/IMFmentalrayCT.dll
+WARNING: local IMF plug-in `C:/Program Files/Autodesk/mentalrayForMaya2014/bin/image/IMFmentalrayMAP.dll' overrides `C:/Program Files/Autodesk/mentalrayForMaya2014/bin/image/IMFmentalrayMAP.dll
+WARNING: local IMF plug-in `C:/Program Files/Autodesk/mentalrayForMaya2014/bin/image/IMFmentalrayST.dll' overrides `C:/Program Files/Autodesk/mentalrayForMaya2014/bin/image/IMFmentalrayST.dll
+Rendering using 12 threads.
+A default light has been created, modify defaultRenderGlobals.enableDefaultLight to change this behavior.
+Automatic near/far clipping values: 1.52035, 100.895.
+Starting Rendering C:/Users/10634060/Documents/maya/projects/default/images/Shot1.2.iff.
+Error: line 0: Unable to load the image file, 'C:/Users/Alyssa/Documents/GitHub/3DEssentials//sourceimages/CroppedBackground.png', for CameraShot1:imagePlaneShape1
+Constructing shading groups
+
+Rendering current frame.
+
+Frame triangle count: 1620
+====================================
+Resource Usage At End Of Frame
+====================================
+   22563	Page faults
+ 307.254 Mb	Max resident size
+ 304.520 Mb	Peak total size(Estimated)
+  70.890 Mb	Peak arena size
+====================================
+ 293.672 Mb	Current
+  29.219 Mb	MEL
+  10.500 Mb	Render Cache
+   0.002 Mb	arguments
+  13.156 Mb	Pixel Map
+   0.328 Mb	Data Blocks
+   0.014 Mb	Render Geometry Arena
+   0.124 Mb	Transforms
+   0.063 Mb	Arrays
+====================================
+Postprocessing rendering result.
+Time For Tessellation (hh:mm:ss): 00:00:00
+Time For Shadow Map   (hh:mm:ss): 00:00:00
+Time For Post Process (hh:mm:ss): 00:00:00
+Time For Frame Render (hh:mm:ss): 00:00:00
+Finished Rendering C:/Users/10634060/Documents/maya/projects/default/images/Shot1.2.iff.
+
+------------------------------------------------------------
+
+
+====================================
+Resource Usage At End Of Rendering
+====================================
+     292	Page faults
+ 304.520 Mb	Peak total size(Estimated)
+  53.390 Mb	Peak arena size
+====================================
+ 285.621 Mb	Current
+  29.219 Mb	MEL
+   7.000 Mb	Render Cache
+   0.002 Mb	arguments
+   0.328 Mb	Data Blocks
+   0.124 Mb	Transforms
+  10.812 Mb	Pixel Map
+   0.063 Mb	Arrays
+====================================
+Total Time For Render (hh:mm:ss): 00:00:00
+Total Elapsed Time For Maya (hh:mm:ss): 00:00:06
+Scene C:/Users/10634060/Documents/maya/projects/default/scenes/Shot1.2__7752.mb completed.
