@@ -1,6 +1,6 @@
 //Maya ASCII 2014 scene
 //Name: Shot1Microphone.ma
-//Last modified: Fri, Feb 07, 2014 09:34:37 AM
+//Last modified: Fri, Feb 07, 2014 09:51:55 AM
 //Codeset: 1252
 file -rdi 1 -ns "MicrophoneMockUp" -rfn "MicrophoneMockUpRN" "C:/Users/10634060/Documents/GitHub/3DEssentials/maya/scenes/MicrophoneMockUp.ma";
 file -r -ns "MicrophoneMockUp" -dr 1 -rfn "MicrophoneMockUpRN" "C:/Users/10634060/Documents/GitHub/3DEssentials/maya/scenes/MicrophoneMockUp.ma";
