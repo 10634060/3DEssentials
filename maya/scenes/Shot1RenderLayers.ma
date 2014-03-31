@@ -1,6 +1,6 @@
 //Maya ASCII 2014 scene
 //Name: Shot1RenderLayers.ma
-//Last modified: Fri, Mar 28, 2014 10:11:15 AM
+//Last modified: Mon, Mar 31, 2014 09:50:41 AM
 //Codeset: 1252
 file -rdi 1 -ns "PianoMockUp" -dr 1 -rfn "PianoMockUpRN" "E:/GitHub/3DEssentials/maya/scenes/PianoAssignMaterials.ma";
 file -rdi 1 -ns "DrumsetMockUp" -dr 1 -rfn "DrumsetMockUpRN" "E:/GitHub/3DEssentials/maya/scenes/DrumsetAssignMaterials.ma";
@@ -93,6 +93,7 @@ requires -nodeType "mentalrayFramebuffer" -nodeType "mentalrayOutputPass" -nodeT
 		 -nodeType "mib_data_get_shader_color" -nodeType "user_ibl_env" -nodeType "user_ibl_rect"
 		 -nodeType "mia_material_x_passes" -nodeType "mi_metallic_paint_x_passes" -nodeType "mi_car_paint_phen_x_passes"
 		 -nodeType "misss_fast_shader_x_passes" -dataType "byteArray" "Mayatomr" "2014.0 - 3.11.1.13 ";
+requires "stereoCamera" "10.0";
 currentUnit -l centimeter -a degree -t film;
 fileInfo "application" "maya";
 fileInfo "product" "Maya 2014";
@@ -103,7 +104,7 @@ fileInfo "license" "education";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
 	setAttr ".t" -type "double3" 89.356578963184418 18.329023333650152 91.887386588579943 ;
-	setAttr ".r" -type "double3" -8.1383527296013725 44.200000000000898 -5.5455914717999772e-016 ;
+	setAttr ".r" -type "double3" -8.1383527296013725 44.200000000000905 -5.5455914717999772e-016 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".rnd" no;
@@ -351,16 +352,19 @@ createNode displayLayerManager -n "layerManager";
 createNode displayLayer -n "defaultLayer";
 createNode renderLayerManager -n "renderLayerManager";
 	setAttr ".crl" 6;
-	setAttr -s 7 ".rlmi";
+	setAttr -s 9 ".rlmi";
 	setAttr ".rlmi[10]" 3;
 	setAttr ".rlmi[11]" 4;
 	setAttr ".rlmi[12]" 2;
 	setAttr ".rlmi[13]" 5;
 	setAttr ".rlmi[14]" 6;
 	setAttr ".rlmi[15]" 1;
+	setAttr ".rlmi[16]" 7;
+	setAttr ".rlmi[17]" 8;
 createNode renderLayer -n "defaultRenderLayer";
 	setAttr ".g" yes;
 	setAttr ".rndr" no;
+	setAttr ".adjs[0].val" 0;
 createNode reference -n "PianoMockUpRN";
 	setAttr ".fn[0]" -type "string" "E:/GitHub/3DEssentials/maya/scenes/PianoMockUp.ma";
 	setAttr ".ed" -type "dataReferenceEdits" 
@@ -465,14 +469,14 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"blendShapePanel\" (localizedPanelLabel(\"Blend Shape\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\tblendShapePanel -unParent -l (localizedPanelLabel(\"Blend Shape\")) -mbv $menusOkayInPanels ;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tblendShapePanel -edit -l (localizedPanelLabel(\"Blend Shape\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynRelEdPanel\" (localizedPanelLabel(\"Dynamic Relationships\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"dynRelEdPanel\" -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n"
 		+ "\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"relationshipPanel\" (localizedPanelLabel(\"Relationship Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"relationshipPanel\" -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"referenceEditorPanel\" (localizedPanelLabel(\"Reference Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"referenceEditorPanel\" -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels  $panelName;\n"
 		+ "\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"componentEditorPanel\" (localizedPanelLabel(\"Component Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"componentEditorPanel\" -l (localizedPanelLabel(\"Component Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Component Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynPaintScriptedPanelType\" (localizedPanelLabel(\"Paint Effects\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"dynPaintScriptedPanelType\" -l (localizedPanelLabel(\"Paint Effects\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Paint Effects\")) -mbv $menusOkayInPanels  $panelName;\n"
-		+ "\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"scriptEditorPanel\" (localizedPanelLabel(\"Script Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"scriptEditorPanel\" -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"Stereo\" (localizedPanelLabel(\"Stereo\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"Stereo\" -l (localizedPanelLabel(\"Stereo\")) -mbv $menusOkayInPanels `;\nstring $editorName = ($panelName+\"Editor\");\n            stereoCameraView -e \n                -editorChanged \"updateModelPanelBar\" \n                -useInteractiveMode 0\n"
-		+ "                -displayLights \"default\" \n                -displayAppearance \"wireframe\" \n                -activeOnly 0\n                -ignorePanZoom 0\n                -wireframeOnShaded 0\n                -headsUpDisplay 1\n                -selectionHiliteDisplay 1\n                -useDefaultMaterial 0\n                -bufferMode \"double\" \n                -twoSidedLighting 1\n                -backfaceCulling 0\n                -xray 0\n                -jointXray 0\n                -activeComponentsXray 0\n                -displayTextures 0\n                -smoothWireframe 0\n                -lineWidth 1\n                -textureAnisotropic 0\n                -textureHilight 1\n                -textureSampling 2\n                -textureDisplay \"modulate\" \n                -textureMaxSize 16384\n                -fogging 0\n                -fogSource \"fragment\" \n                -fogMode \"linear\" \n                -fogStart 0\n                -fogEnd 100\n                -fogDensity 0.1\n                -fogColor 0.5 0.5 0.5 1 \n                -maxConstantTransparency 1\n"
-		+ "                -objectFilterShowInHUD 1\n                -isFiltered 0\n                -colorResolution 4 4 \n                -bumpResolution 4 4 \n                -textureCompression 0\n                -transparencyAlgorithm \"frontAndBackCull\" \n                -transpInShadows 0\n                -cullingOverride \"none\" \n                -lowQualityLighting 0\n                -maximumNumHardwareLights 0\n                -occlusionCulling 0\n                -shadingModel 0\n                -useBaseRenderer 0\n                -useReducedRenderer 0\n                -smallObjectCulling 0\n                -smallObjectThreshold -1 \n                -interactiveDisableShadows 0\n                -interactiveBackFaceCull 0\n                -sortTransparent 1\n                -nurbsCurves 1\n                -nurbsSurfaces 1\n                -polymeshes 1\n                -subdivSurfaces 1\n                -planes 1\n                -lights 1\n                -cameras 1\n                -controlVertices 1\n                -hulls 1\n                -grid 1\n"
-		+ "                -imagePlane 1\n                -joints 1\n                -ikHandles 1\n                -deformers 1\n                -dynamics 1\n                -fluids 1\n                -hairSystems 1\n                -follicles 1\n                -nCloths 1\n                -nParticles 1\n                -nRigids 1\n                -dynamicConstraints 1\n                -locators 1\n                -manipulators 1\n                -pluginShapes 1\n                -dimensions 1\n                -handles 1\n                -pivots 1\n                -textures 1\n                -strokes 1\n                -motionTrails 1\n                -clipGhosts 1\n                -greasePencils 1\n                -shadows 0\n                -displayMode \"centerEye\" \n                -viewColor 0 0 0 1 \n                -useCustomBackground 1\n                $editorName;\n            stereoCameraView -e -viewSelected 0 $editorName;\n            stereoCameraView -e \n                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName;\n"
-		+ "\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Stereo\")) -mbv $menusOkayInPanels  $panelName;\nstring $editorName = ($panelName+\"Editor\");\n            stereoCameraView -e \n                -editorChanged \"updateModelPanelBar\" \n                -useInteractiveMode 0\n                -displayLights \"default\" \n                -displayAppearance \"wireframe\" \n                -activeOnly 0\n                -ignorePanZoom 0\n                -wireframeOnShaded 0\n                -headsUpDisplay 1\n                -selectionHiliteDisplay 1\n                -useDefaultMaterial 0\n                -bufferMode \"double\" \n                -twoSidedLighting 1\n                -backfaceCulling 0\n                -xray 0\n                -jointXray 0\n                -activeComponentsXray 0\n                -displayTextures 0\n                -smoothWireframe 0\n                -lineWidth 1\n                -textureAnisotropic 0\n                -textureHilight 1\n                -textureSampling 2\n"
-		+ "                -textureDisplay \"modulate\" \n                -textureMaxSize 16384\n                -fogging 0\n                -fogSource \"fragment\" \n                -fogMode \"linear\" \n                -fogStart 0\n                -fogEnd 100\n                -fogDensity 0.1\n                -fogColor 0.5 0.5 0.5 1 \n                -maxConstantTransparency 1\n                -objectFilterShowInHUD 1\n                -isFiltered 0\n                -colorResolution 4 4 \n                -bumpResolution 4 4 \n                -textureCompression 0\n                -transparencyAlgorithm \"frontAndBackCull\" \n                -transpInShadows 0\n                -cullingOverride \"none\" \n                -lowQualityLighting 0\n                -maximumNumHardwareLights 0\n                -occlusionCulling 0\n                -shadingModel 0\n                -useBaseRenderer 0\n                -useReducedRenderer 0\n                -smallObjectCulling 0\n                -smallObjectThreshold -1 \n                -interactiveDisableShadows 0\n                -interactiveBackFaceCull 0\n"
-		+ "                -sortTransparent 1\n                -nurbsCurves 1\n                -nurbsSurfaces 1\n                -polymeshes 1\n                -subdivSurfaces 1\n                -planes 1\n                -lights 1\n                -cameras 1\n                -controlVertices 1\n                -hulls 1\n                -grid 1\n                -imagePlane 1\n                -joints 1\n                -ikHandles 1\n                -deformers 1\n                -dynamics 1\n                -fluids 1\n                -hairSystems 1\n                -follicles 1\n                -nCloths 1\n                -nParticles 1\n                -nRigids 1\n                -dynamicConstraints 1\n                -locators 1\n                -manipulators 1\n                -pluginShapes 1\n                -dimensions 1\n                -handles 1\n                -pivots 1\n                -textures 1\n                -strokes 1\n                -motionTrails 1\n                -clipGhosts 1\n                -greasePencils 1\n                -shadows 0\n"
-		+ "                -displayMode \"centerEye\" \n                -viewColor 0 0 0 1 \n                -useCustomBackground 1\n                $editorName;\n            stereoCameraView -e -viewSelected 0 $editorName;\n            stereoCameraView -e \n                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-defaultImage \"\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
+		+ "\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"scriptEditorPanel\" (localizedPanelLabel(\"Script Editor\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"scriptEditorPanel\" -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels `;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"Stereo\" (localizedPanelLabel(\"Stereo\")) `;\n\tif (\"\" == $panelName) {\n\t\tif ($useSceneConfig) {\n\t\t\t$panelName = `scriptedPanel -unParent  -type \"Stereo\" -l (localizedPanelLabel(\"Stereo\")) -mbv $menusOkayInPanels `;\nstring $editorName = ($panelName+\"Editor\");\n            stereoCameraView -e \n                -editorChanged \"updateModelPanelBar\" \n                -camera \"camera1\" \n"
+		+ "                -useInteractiveMode 0\n                -displayLights \"default\" \n                -displayAppearance \"wireframe\" \n                -activeOnly 0\n                -ignorePanZoom 0\n                -wireframeOnShaded 0\n                -headsUpDisplay 1\n                -selectionHiliteDisplay 1\n                -useDefaultMaterial 0\n                -bufferMode \"double\" \n                -twoSidedLighting 1\n                -backfaceCulling 0\n                -xray 0\n                -jointXray 0\n                -activeComponentsXray 0\n                -displayTextures 0\n                -smoothWireframe 0\n                -lineWidth 1\n                -textureAnisotropic 0\n                -textureHilight 1\n                -textureSampling 2\n                -textureDisplay \"modulate\" \n                -textureMaxSize 16384\n                -fogging 0\n                -fogSource \"fragment\" \n                -fogMode \"linear\" \n                -fogStart 0\n                -fogEnd 100\n                -fogDensity 0.1\n                -fogColor 0.5 0.5 0.5 1 \n"
+		+ "                -maxConstantTransparency 1\n                -objectFilterShowInHUD 1\n                -isFiltered 0\n                -colorResolution 4 4 \n                -bumpResolution 4 4 \n                -textureCompression 0\n                -transparencyAlgorithm \"frontAndBackCull\" \n                -transpInShadows 0\n                -cullingOverride \"none\" \n                -lowQualityLighting 0\n                -maximumNumHardwareLights 0\n                -occlusionCulling 0\n                -shadingModel 0\n                -useBaseRenderer 0\n                -useReducedRenderer 0\n                -smallObjectCulling 0\n                -smallObjectThreshold -1 \n                -interactiveDisableShadows 0\n                -interactiveBackFaceCull 0\n                -sortTransparent 1\n                -nurbsCurves 1\n                -nurbsSurfaces 1\n                -polymeshes 1\n                -subdivSurfaces 1\n                -planes 1\n                -lights 1\n                -cameras 1\n                -controlVertices 1\n"
+		+ "                -hulls 1\n                -grid 1\n                -imagePlane 1\n                -joints 1\n                -ikHandles 1\n                -deformers 1\n                -dynamics 1\n                -fluids 1\n                -hairSystems 1\n                -follicles 1\n                -nCloths 1\n                -nParticles 1\n                -nRigids 1\n                -dynamicConstraints 1\n                -locators 1\n                -manipulators 1\n                -pluginShapes 1\n                -dimensions 1\n                -handles 1\n                -pivots 1\n                -textures 1\n                -strokes 1\n                -motionTrails 1\n                -clipGhosts 1\n                -greasePencils 1\n                -shadows 0\n                -displayMode \"centerEye\" \n                -viewColor 0 0 0 1 \n                -useCustomBackground 1\n                $editorName;\n            stereoCameraView -e -viewSelected 0 $editorName;\n            stereoCameraView -e \n                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n"
+		+ "                $editorName;\n\t\t}\n\t} else {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Stereo\")) -mbv $menusOkayInPanels  $panelName;\nstring $editorName = ($panelName+\"Editor\");\n            stereoCameraView -e \n                -editorChanged \"updateModelPanelBar\" \n                -camera \"camera1\" \n                -useInteractiveMode 0\n                -displayLights \"default\" \n                -displayAppearance \"wireframe\" \n                -activeOnly 0\n                -ignorePanZoom 0\n                -wireframeOnShaded 0\n                -headsUpDisplay 1\n                -selectionHiliteDisplay 1\n                -useDefaultMaterial 0\n                -bufferMode \"double\" \n                -twoSidedLighting 1\n                -backfaceCulling 0\n                -xray 0\n                -jointXray 0\n                -activeComponentsXray 0\n                -displayTextures 0\n                -smoothWireframe 0\n                -lineWidth 1\n                -textureAnisotropic 0\n"
+		+ "                -textureHilight 1\n                -textureSampling 2\n                -textureDisplay \"modulate\" \n                -textureMaxSize 16384\n                -fogging 0\n                -fogSource \"fragment\" \n                -fogMode \"linear\" \n                -fogStart 0\n                -fogEnd 100\n                -fogDensity 0.1\n                -fogColor 0.5 0.5 0.5 1 \n                -maxConstantTransparency 1\n                -objectFilterShowInHUD 1\n                -isFiltered 0\n                -colorResolution 4 4 \n                -bumpResolution 4 4 \n                -textureCompression 0\n                -transparencyAlgorithm \"frontAndBackCull\" \n                -transpInShadows 0\n                -cullingOverride \"none\" \n                -lowQualityLighting 0\n                -maximumNumHardwareLights 0\n                -occlusionCulling 0\n                -shadingModel 0\n                -useBaseRenderer 0\n                -useReducedRenderer 0\n                -smallObjectCulling 0\n                -smallObjectThreshold -1 \n"
+		+ "                -interactiveDisableShadows 0\n                -interactiveBackFaceCull 0\n                -sortTransparent 1\n                -nurbsCurves 1\n                -nurbsSurfaces 1\n                -polymeshes 1\n                -subdivSurfaces 1\n                -planes 1\n                -lights 1\n                -cameras 1\n                -controlVertices 1\n                -hulls 1\n                -grid 1\n                -imagePlane 1\n                -joints 1\n                -ikHandles 1\n                -deformers 1\n                -dynamics 1\n                -fluids 1\n                -hairSystems 1\n                -follicles 1\n                -nCloths 1\n                -nParticles 1\n                -nRigids 1\n                -dynamicConstraints 1\n                -locators 1\n                -manipulators 1\n                -pluginShapes 1\n                -dimensions 1\n                -handles 1\n                -pivots 1\n                -textures 1\n                -strokes 1\n                -motionTrails 1\n"
+		+ "                -clipGhosts 1\n                -greasePencils 1\n                -shadows 0\n                -displayMode \"centerEye\" \n                -viewColor 0 0 0 1 \n                -useCustomBackground 1\n                $editorName;\n            stereoCameraView -e -viewSelected 0 $editorName;\n            stereoCameraView -e \n                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-defaultImage \"\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
 		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -camera \\\"camera1\\\" \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 1\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -maxConstantTransparency 1\\n    -rendererName \\\"hwRender_OpenGL_Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
 		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -camera \\\"camera1\\\" \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 1\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -maxConstantTransparency 1\\n    -rendererName \\\"hwRender_OpenGL_Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
 		+ "\t\t\t\t$configName;\n\n            setNamedPanelLayout (localizedPanelLabel(\"Current Layout\"));\n        }\n\n        panelHistory -e -clear mainPanelHistory;\n        setFocus `paneLayout -q -p1 $gMainPane`;\n        sceneUIReplacement -deleteRemaining;\n        sceneUIReplacement -clear;\n\t}\n\n\ngrid -spacing 5 -size 12 -divisions 5 -displayAxes yes -displayGridLines yes -displayDivisionLines yes -displayPerspectiveLabels no -displayOrthographicLabels no -displayAxesBold yes -perspectiveLabelPosition axis -orthographicLabelPosition edge;\nviewManip -drawCompass 0 -compassAngle 0 -frontParameters \"\" -homeParameters \"\" -selectionLockParameters \"\";\n}\n");
@@ -1131,7 +1135,7 @@ createNode reference -n "MicrophoneTexturesRN";
 	setAttr ".ptag" -type "string" "";
 lockNode -l 1 ;
 createNode reference -n "PianoTexturesRN";
-	setAttr -s 197 ".phl";
+	setAttr -s 198 ".phl";
 	setAttr ".phl[1]" 0;
 	setAttr ".phl[2]" 0;
 	setAttr ".phl[3]" 0;
@@ -1329,10 +1333,11 @@ createNode reference -n "PianoTexturesRN";
 	setAttr ".phl[195]" 0;
 	setAttr ".phl[196]" 0;
 	setAttr ".phl[197]" 0;
+	setAttr ".phl[198]" 0;
 	setAttr ".ed" -type "dataReferenceEdits" 
 		"PianoTexturesRN"
 		"PianoTexturesRN" 0
-		"PianoTexturesRN" 10313
+		"PianoTexturesRN" 10314
 		2 "|PianoTextures:PianoControl" "renderLayerInfo" " -s 3"
 		2 "|PianoTextures:PianoControl" "renderLayerInfo[0].renderLayerId" " 0"
 		2 "|PianoTextures:PianoControl" "renderLayerInfo[0].renderLayerRenderable" 
@@ -20486,7 +20491,7 @@ createNode reference -n "PianoTexturesRN";
 		2 "|PianoTextures:PianoControl|PianoTextures:BrownPianoBlinn1|PianoTextures:transform96|PianoTextures:polySurfaceShape374" 
 		"miMaxDisplace" " 0"
 		2 "|PianoTextures:PianoControl|PianoTextures:PianoMat16" "renderLayerInfo" 
-		" -s 4"
+		" -s 5"
 		2 "|PianoTextures:PianoControl|PianoTextures:PianoMat16" "renderLayerInfo[0].renderLayerId" 
 		" 0"
 		2 "|PianoTextures:PianoControl|PianoTextures:PianoMat16" "renderLayerInfo[0].renderLayerRenderable" 
@@ -21465,13 +21470,15 @@ createNode reference -n "PianoTexturesRN";
 		"PianoTexturesRN.placeHolderList[194]" ""
 		5 4 "PianoTexturesRN" "|PianoTextures:PianoControl|PianoTextures:PianoMat16.renderLayerInfo[3]" 
 		"PianoTexturesRN.placeHolderList[195]" ""
+		5 4 "PianoTexturesRN" "|PianoTextures:PianoControl|PianoTextures:PianoMat16.renderLayerInfo[4]" 
+		"PianoTexturesRN.placeHolderList[196]" ""
 		5 0 "PianoTexturesRN" "|PianoTextures:PianoControl|PianoTextures:PianoMat16|PianoTextures:PianoMatShape16.instObjGroups" 
-		"PianoTextures:blinn2SG.dagSetMembers" "PianoTexturesRN.placeHolderList[196]" "PianoTexturesRN.placeHolderList[197]" 
+		"PianoTextures:blinn2SG.dagSetMembers" "PianoTexturesRN.placeHolderList[197]" "PianoTexturesRN.placeHolderList[198]" 
 		"PianoTextures:blinn2SG.dsm";
 	setAttr ".ptag" -type "string" "";
 lockNode -l 1 ;
 createNode reference -n "DrumsetTexturesRN";
-	setAttr -s 303 ".phl";
+	setAttr -s 304 ".phl";
 	setAttr ".phl[2]" 0;
 	setAttr ".phl[3]" 0;
 	setAttr ".phl[4]" 0;
@@ -21775,13 +21782,14 @@ createNode reference -n "DrumsetTexturesRN";
 	setAttr ".phl[302]" 0;
 	setAttr ".phl[303]" 0;
 	setAttr ".phl[304]" 0;
+	setAttr ".phl[305]" 0;
 	setAttr ".ed" -type "dataReferenceEdits" 
 		"DrumsetTexturesRN"
 		"DrumsetTexturesRN" 2
 		2 "|DrumsetTextures:DrumControl" "rotate" " -type \"double3\" 0 0 0"
 		5 4 "DrumsetTexturesRN" "|DrumsetTextures:DrumControl.renderLayerInfo[0]" 
 		"DrumsetTexturesRN.placeHolderList[1]" ""
-		"DrumsetTexturesRN" 9385
+		"DrumsetTexturesRN" 9386
 		2 "|DrumsetTextures:BassDrum" "miDeriveFromMaya" " 1"
 		2 "|DrumsetTextures:BassDrum" "miHide" " 0"
 		2 "|DrumsetTextures:BassDrum" "miVisible" " 2"
@@ -39449,7 +39457,7 @@ createNode reference -n "DrumsetTexturesRN";
 		2 "|DrumsetTextures:DrumsetControl|DrumsetTextures:polySurface128|DrumsetTextures:transform158|DrumsetTextures:polySurfaceShape142" 
 		"miMaxDisplace" " 0"
 		2 "|DrumsetTextures:DrumsetControl|DrumsetTextures:polySurface158" "renderLayerInfo" 
-		" -s 3"
+		" -s 4"
 		2 "|DrumsetTextures:DrumsetControl|DrumsetTextures:polySurface158" "renderLayerInfo[0].renderLayerId" 
 		" 0"
 		2 "|DrumsetTextures:DrumsetControl|DrumsetTextures:polySurface158" "renderLayerInfo[0].renderLayerRenderable" 
@@ -40327,7 +40335,9 @@ createNode reference -n "DrumsetTexturesRN";
 		5 4 "DrumsetTexturesRN" "|DrumsetTextures:DrumsetControl|DrumsetTextures:polySurface158.renderLayerInfo[1]" 
 		"DrumsetTexturesRN.placeHolderList[303]" ""
 		5 4 "DrumsetTexturesRN" "|DrumsetTextures:DrumsetControl|DrumsetTextures:polySurface158.renderLayerInfo[2]" 
-		"DrumsetTexturesRN.placeHolderList[304]" "";
+		"DrumsetTexturesRN.placeHolderList[304]" ""
+		5 4 "DrumsetTexturesRN" "|DrumsetTextures:DrumsetControl|DrumsetTextures:polySurface158.renderLayerInfo[3]" 
+		"DrumsetTexturesRN.placeHolderList[305]" "";
 	setAttr ".ptag" -type "string" "";
 lockNode -l 1 ;
 createNode mentalrayOptions -s -n "miContourPreset";
@@ -40366,6 +40376,7 @@ createNode renderPass -n "reflection";
 		-min 0 -max 10 -smn 0 -smx 10 -at "long";
 	addAttr -ci true -sn "maxrfr" -ln "maxRefractionLevel" -nn "Maximum Refraction Level" 
 		-min 0 -max 10 -smn 0 -smx 10 -at "long";
+	setAttr -s 4 ".ow";
 	setAttr ".pid" -type "string" "REFL";
 	setAttr ".fbt" 256;
 	setAttr ".pgn" -type "string" "Illumination";
@@ -40393,6 +40404,7 @@ createNode renderPass -n "beautyNoReflectRefract";
 		-min 0 -max 10 -smn 0 -smx 10 -at "long";
 	addAttr -ci true -sn "maxrfr" -ln "maxRefractionLevel" -nn "Maximum Refraction Level" 
 		-dv 10 -min 0 -max 10 -smn 0 -smx 10 -at "long";
+	setAttr -s 4 ".ow";
 	setAttr ".pid" -type "string" "BEAUTY";
 	setAttr ".fbt" 256;
 	setAttr ".nc" 4;
@@ -40425,6 +40437,7 @@ createNode renderPass -n "shadow";
 		-min 0 -max 10 -smn 0 -smx 10 -at "long";
 	addAttr -ci true -sn "maxrfr" -ln "maxRefractionLevel" -nn "Maximum Refraction Level" 
 		-dv 10 -min 0 -max 10 -smn 0 -smx 10 -at "long";
+	setAttr -s 4 ".ow";
 	setAttr ".pid" -type "string" "SHD";
 	setAttr ".fbt" 256;
 	setAttr ".pgn" -type "string" "Illumination";
@@ -40452,6 +40465,7 @@ createNode renderPass -n "specular";
 		-min 0 -max 10 -smn 0 -smx 10 -at "long";
 	addAttr -ci true -sn "maxrfr" -ln "maxRefractionLevel" -nn "Maximum Refraction Level" 
 		-min 0 -max 10 -smn 0 -smx 10 -at "long";
+	setAttr -s 4 ".ow";
 	setAttr ".pid" -type "string" "SPEC";
 	setAttr ".fbt" 256;
 	setAttr ".pgn" -type "string" "Illumination";
@@ -40481,6 +40495,7 @@ createNode renderPass -n "shadowRaw";
 		-min 0 -max 10 -smn 0 -smx 10 -at "long";
 	addAttr -ci true -sn "maxrfr" -ln "maxRefractionLevel" -nn "Maximum Refraction Level" 
 		-dv 10 -min 0 -max 10 -smn 0 -smx 10 -at "long";
+	setAttr -s 4 ".ow";
 	setAttr ".pid" -type "string" "SHDRAW";
 	setAttr ".fbt" 256;
 	setAttr ".pgn" -type "string" "Illumination";
@@ -40506,6 +40521,7 @@ createNode renderPass -n "reflectedMaterialColor";
 		-min 0 -max 10 -smn 0 -smx 10 -at "long";
 	addAttr -ci true -sn "maxrfr" -ln "maxRefractionLevel" -nn "Maximum Refraction Level" 
 		-min 0 -max 10 -smn 0 -smx 10 -at "long";
+	setAttr -s 4 ".ow";
 	setAttr ".pid" -type "string" "REFLRA";
 	setAttr ".fbt" 256;
 	setAttr ".pgn" -type "string" "Illumination";
@@ -40531,6 +40547,7 @@ createNode renderPass -n "diffuseMaterialColor";
 		-min 0 -max 10 -smn 0 -smx 10 -at "long";
 	addAttr -ci true -sn "maxrfr" -ln "maxRefractionLevel" -nn "Maximum Refraction Level" 
 		-min 0 -max 10 -smn 0 -smx 10 -at "long";
+	setAttr -s 4 ".ow";
 	setAttr ".pid" -type "string" "DIFRAW";
 	setAttr ".fbt" 256;
 	setAttr ".pgn" -type "string" "Illumination";
@@ -40558,6 +40575,7 @@ createNode renderPass -n "beauty";
 		-min 0 -max 10 -smn 0 -smx 10 -at "long";
 	addAttr -ci true -sn "maxrfr" -ln "maxRefractionLevel" -nn "Maximum Refraction Level" 
 		-dv 10 -min 0 -max 10 -smn 0 -smx 10 -at "long";
+	setAttr -s 4 ".ow";
 	setAttr ".pid" -type "string" "BEAUTY";
 	setAttr ".fbt" 256;
 	setAttr ".nc" 4;
@@ -40571,7 +40589,36 @@ createNode materialInfo -n "materialInfo2";
 createNode renderLayer -n "MicrophonePasses";
 	setAttr ".do" 3;
 createNode renderLayer -n "PianoRenderLayer";
+	setAttr ".adjs[0].val" 0;
 	setAttr ".do" 6;
+createNode renderLayer -n "PianoPasses";
+	setAttr ".do" 7;
+createNode renderLayer -n "DrumsetPasses";
+	setAttr ".do" 8;
+createNode renderPass -n "matte";
+	addAttr -ci true -sn "ut" -ln "useTransparency" -nn "Use Transparency" -dv 1 -min 
+		0 -max 1 -at "bool";
+	addAttr -ci true -sn "ho" -ln "holdout" -nn "Hold-Out" -dv 1 -min 0 -max 1 -at "bool";
+	addAttr -ci true -sn "rflh" -ln "reflectHidden" -nn "Hidden Geometries Visible in Reflections" 
+		-min 0 -max 1 -at "bool";
+	addAttr -ci true -sn "rfrh" -ln "refractHidden" -nn "Hidden Geometries Visible in Refractions" 
+		-min 0 -max 1 -at "bool";
+	addAttr -ci true -sn "hrfl" -ln "hiddenReflect" -nn "Hidden Geometries Produce Reflections" 
+		-min 0 -max 1 -at "bool";
+	addAttr -ci true -sn "hrfr" -ln "hiddenRefract" -nn "Hidden Geometries Produce Refractions" 
+		-min 0 -max 1 -at "bool";
+	addAttr -ci true -sn "minrfl" -ln "minReflectionLevel" -nn "Minimum Reflection Level" 
+		-min 0 -max 10 -smn 0 -smx 10 -at "long";
+	addAttr -ci true -sn "maxrfl" -ln "maxReflectionLevel" -nn "Maximum Reflection Level" 
+		-min 0 -max 10 -smn 0 -smx 10 -at "long";
+	addAttr -ci true -sn "minrfr" -ln "minRefractionLevel" -nn "Minimum Refraction Level" 
+		-min 0 -max 10 -smn 0 -smx 10 -at "long";
+	addAttr -ci true -sn "maxrfr" -ln "maxRefractionLevel" -nn "Maximum Refraction Level" 
+		-min 0 -max 10 -smn 0 -smx 10 -at "long";
+	setAttr -s 3 ".ow";
+	setAttr ".pid" -type "string" "MATTE";
+	setAttr ".fbt" 256;
+	setAttr ".pgn" -type "string" "Matte";
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -40592,7 +40639,7 @@ select -ne :postProcessList1;
 select -ne :defaultRenderUtilityList1;
 	setAttr -s 116 ".u";
 select -ne :defaultRenderingList1;
-	setAttr -s 18 ".r";
+	setAttr -s 21 ".r";
 select -ne :renderGlobalsList1;
 select -ne :defaultRenderGlobals;
 	setAttr ".ren" -type "string" "mentalRay";
@@ -40613,8 +40660,6 @@ select -ne :hardwareRenderingGlobals;
 select -ne :defaultHardwareRenderGlobals;
 	setAttr ".fn" -type "string" "im";
 	setAttr ".res" -type "string" "ntsc_4d 646 485 1.333";
-select -ne :ikSystem;
-	setAttr -s 4 ".sol";
 select -ne :hyperGraphLayout;
 	setAttr -s 9 ".hyp";
 connectAttr "MicrophoneRenderLayer.ri" "MicrophoneTexturesRN.phl[1]";
@@ -40830,7 +40875,8 @@ connectAttr "AllPasses.ri" "PianoTexturesRN.phl[192]";
 connectAttr "AllPasses.ri" "PianoTexturesRN.phl[193]";
 connectAttr "AllPasses.ri" "PianoTexturesRN.phl[194]";
 connectAttr "PianoRenderLayer.ri" "PianoTexturesRN.phl[195]";
-connectAttr "PianoTexturesRN.phl[196]" "PianoTexturesRN.phl[197]";
+connectAttr "PianoPasses.ri" "PianoTexturesRN.phl[196]";
+connectAttr "PianoTexturesRN.phl[197]" "PianoTexturesRN.phl[198]";
 connectAttr "DrumsetMatte.ri" "DrumsetTexturesRN.phl[2]";
 connectAttr "AllPasses.ri" "DrumsetTexturesRN.phl[3]";
 connectAttr "DrumsetMatte.ri" "DrumsetTexturesRN.phl[4]";
@@ -41134,6 +41180,7 @@ connectAttr "AllPasses.ri" "DrumsetTexturesRN.phl[301]";
 connectAttr "AllPasses.ri" "DrumsetTexturesRN.phl[302]";
 connectAttr "DrumsetMatte.ri" "DrumsetTexturesRN.phl[303]";
 connectAttr "AllPasses.ri" "DrumsetTexturesRN.phl[304]";
+connectAttr "DrumsetPasses.ri" "DrumsetTexturesRN.phl[305]";
 connectAttr "BackgroundMatte.ri" "camera1.rlio[0]";
 connectAttr "AllPasses.ri" "camera1.rlio[1]";
 connectAttr "BackgroundRenderLayer.msg" "cameraShape1.ip" -na;
@@ -41156,6 +41203,7 @@ relationship "shadowLink" ":lightLinker1" "set1.message" ":defaultLightSet.messa
 relationship "shadowLink" ":lightLinker1" "set2.message" ":defaultLightSet.message";
 connectAttr "layerManager.dli[0]" "defaultLayer.id";
 connectAttr "renderLayerManager.rlmi[0]" "defaultRenderLayer.rlid";
+connectAttr "imagePlaneShape1.dm" "defaultRenderLayer.adjs[0].plg";
 connectAttr "sharedReferenceNode.sr" "PianoMockUpRN.sr";
 connectAttr "sharedReferenceNode.sr" "DrumsetMockUpRN.sr";
 connectAttr "sharedReferenceNode.sr" "MicrophoneMockUpRN.sr";
@@ -41169,13 +41217,37 @@ connectAttr "surfaceShader1.msg" "materialInfo1.m";
 connectAttr "surfaceShader1.msg" "materialInfo1.t" -na;
 connectAttr "renderLayerManager.rlmi[13]" "AllPasses.rlid";
 connectAttr "AllPasses.rps" "reflection.ow" -na;
+connectAttr "PianoPasses.rps" "reflection.ow" -na;
+connectAttr "MicrophonePasses.rps" "reflection.ow" -na;
+connectAttr "DrumsetPasses.rps" "reflection.ow" -na;
 connectAttr "AllPasses.rps" "beautyNoReflectRefract.ow" -na;
+connectAttr "PianoPasses.rps" "beautyNoReflectRefract.ow" -na;
+connectAttr "MicrophonePasses.rps" "beautyNoReflectRefract.ow" -na;
+connectAttr "DrumsetPasses.rps" "beautyNoReflectRefract.ow" -na;
 connectAttr "AllPasses.rps" "shadow.ow" -na;
+connectAttr "PianoPasses.rps" "shadow.ow" -na;
+connectAttr "MicrophonePasses.rps" "shadow.ow" -na;
+connectAttr "DrumsetPasses.rps" "shadow.ow" -na;
 connectAttr "AllPasses.rps" "specular.ow" -na;
+connectAttr "PianoPasses.rps" "specular.ow" -na;
+connectAttr "MicrophonePasses.rps" "specular.ow" -na;
+connectAttr "DrumsetPasses.rps" "specular.ow" -na;
 connectAttr "AllPasses.rps" "shadowRaw.ow" -na;
+connectAttr "PianoPasses.rps" "shadowRaw.ow" -na;
+connectAttr "MicrophonePasses.rps" "shadowRaw.ow" -na;
+connectAttr "DrumsetPasses.rps" "shadowRaw.ow" -na;
 connectAttr "AllPasses.rps" "reflectedMaterialColor.ow" -na;
+connectAttr "PianoPasses.rps" "reflectedMaterialColor.ow" -na;
+connectAttr "MicrophonePasses.rps" "reflectedMaterialColor.ow" -na;
+connectAttr "DrumsetPasses.rps" "reflectedMaterialColor.ow" -na;
 connectAttr "AllPasses.rps" "diffuseMaterialColor.ow" -na;
+connectAttr "PianoPasses.rps" "diffuseMaterialColor.ow" -na;
+connectAttr "MicrophonePasses.rps" "diffuseMaterialColor.ow" -na;
+connectAttr "DrumsetPasses.rps" "diffuseMaterialColor.ow" -na;
 connectAttr "AllPasses.rps" "beauty.ow" -na;
+connectAttr "PianoPasses.rps" "beauty.ow" -na;
+connectAttr "MicrophonePasses.rps" "beauty.ow" -na;
+connectAttr "DrumsetPasses.rps" "beauty.ow" -na;
 connectAttr "mib_amb_occlusion1.S11" "surfaceShader2.oc";
 connectAttr "surfaceShader2.oc" "set2.ss";
 connectAttr "set2.msg" "materialInfo2.sg";
@@ -41183,6 +41255,12 @@ connectAttr "surfaceShader2.msg" "materialInfo2.m";
 connectAttr "surfaceShader2.msg" "materialInfo2.t" -na;
 connectAttr "renderLayerManager.rlmi[14]" "MicrophonePasses.rlid";
 connectAttr "renderLayerManager.rlmi[15]" "PianoRenderLayer.rlid";
+connectAttr "imagePlaneShape1.dm" "PianoRenderLayer.adjs[0].plg";
+connectAttr "renderLayerManager.rlmi[16]" "PianoPasses.rlid";
+connectAttr "renderLayerManager.rlmi[17]" "DrumsetPasses.rlid";
+connectAttr "DrumsetPasses.rps" "matte.ow" -na;
+connectAttr "PianoPasses.rps" "matte.ow" -na;
+connectAttr "MicrophonePasses.rps" "matte.ow" -na;
 connectAttr "set1.pa" ":renderPartition.st" -na;
 connectAttr "set2.pa" ":renderPartition.st" -na;
 connectAttr "surfaceShader1.msg" ":defaultShaderList1.s" -na;
@@ -41204,4 +41282,7 @@ connectAttr "diffuseMaterialColor.msg" ":defaultRenderingList1.r" -na;
 connectAttr "beauty.msg" ":defaultRenderingList1.r" -na;
 connectAttr "MicrophonePasses.msg" ":defaultRenderingList1.r" -na;
 connectAttr "PianoRenderLayer.msg" ":defaultRenderingList1.r" -na;
+connectAttr "PianoPasses.msg" ":defaultRenderingList1.r" -na;
+connectAttr "DrumsetPasses.msg" ":defaultRenderingList1.r" -na;
+connectAttr "matte.msg" ":defaultRenderingList1.r" -na;
 // End of Shot1RenderLayers.ma
